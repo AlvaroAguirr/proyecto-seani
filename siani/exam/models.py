@@ -4,6 +4,12 @@
 from django.db import models
 
 # Create your models here.
+from django.contrib.auth.models import User
+
+from career.models import Career
+from library.models import Module,Question
+
+
 
 class Stage(models.Model):
     stage = models.IntegerField(
@@ -31,3 +37,42 @@ class Stage(models.Model):
     class Meta:
         verbose_name= "etapa"
         verbose_name_plural ="etapas"
+
+
+
+class Exam(models.Model):
+    user= models.OneToOneField( User, on_delete=models.CASCADE, verbose_name="Modulos")
+    career = models.ForeignKey( Career,on_delete=models.CASCADE, verbose_name="carrera")
+    stage  = models.ForeignKey(Stage, on_delete= models.CASCADE, verbose_name="Etapa")
+    modules = models.ManyToManyField(Module, through='ExamModule', verbose_name="Modulos")
+    questions = models.ManyToManyField(Question, through='Breakdown', verbose_name="Preguntas")
+    score = models.FloatField(default=0.0, verbose_name="Calificacion")
+    created = models.DateTimeField(auto_now_add =True, verbose_name="Fecha de creacion")
+    updated = models.DateTimeField(auto_now=True, verbose_name="Fecha de Actualizacion ")
+
+    def __str__(self):
+        return f"{self.user} - {self.career} - {self.score}"
+
+    class Meta:
+        verbose_name =" examen"
+        verbose_name_plural= "exámenes"
+class ExamModule(models.Model):
+    exam= models.ForeignKey(Exam, on_delete=models.CASCADE, verbose_name="Examen")
+    module = models.ForeignKey(Module, on_delete=models.CASCADE, verbose_name="Módulo")
+    active= models.BooleanField(default=True, verbose_name="Activo")
+    score= models.FloatField(default= 0.0, verbose_name="Calificacion ")
+
+
+    def __str__ (self):
+        return f"{self.module} - {self.score}"
+
+
+class Breakdown(models.Model):
+    exam= models.ForeignKey(Exam, on_delete=models.CASCADE, verbose_name="Examen")
+    question= models.ForeignKey(Question, on_delete=models.CASCADE, verbose_name="Pregunta")
+    answer= models.CharField (max_length =5, default = '-', verbose_name="Respuesta")
+    correct = models.CharField(max_length=5, default ='-', verbose_name="Respuesta Correcta")
+
+
+    def __str__ (self):
+        return f"{self.question} - {self.answer}"
