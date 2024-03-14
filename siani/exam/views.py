@@ -7,6 +7,16 @@ from .forms import CandidateForm
 from .models import Exam
 
 
+def home(request) :
+    user= request.user
+    return render(request, 'exam/home.html',{"user": user})
+
+def question(request, m_id, q_id =1):
+    exam= request.user.exam
+    questions = exam.breakdown_set.filter(question__module_id= m_id)
+    question= questions[q_id-1].question
+    return render(request, 'exam/question.html', {"question": question})
+
 def add_candidate(request):
     if request.method == "POST":
         form = CandidateForm(request.POST)
