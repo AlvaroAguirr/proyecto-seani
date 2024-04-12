@@ -1,23 +1,46 @@
-<h1> Bienvenido {{ user.username }}</h1>
+{% extends 'base.html' %}
 
 
+{% block title %}Home{{ user }}{% endblock %}
+    
+{% load static %}
+{% block img-head %}{% static 'images/images.jpg'%} {% endblock %}
+
+{% block content %}
+
+<div class="titulo">
+    <h1> Bienvenido {{ user.username }}</h1>
+    
+    
+    
+    <h3> {{ user.email }} </h3>
+    
+    <h3> {{ user.exam }}</h3>
+    
+</div>
 <h2> Examen de {{ user.first_name }} {{ usar.last_name }}</h2>
 
-<h3> {{ user.email }} </h3>
 
-<h3> {{ user.exam }}</h3>
 
-<ul>
 
-    {% for module in user.exam.modules.all %}
-    <li><a href="{% url 'exam:question' module.id %}">
-        {{ module }}
-    </a></li>
-   {% endfor %}
-</ul>
+<h1>Haz clic en el modulo que tu quieras para empezar a hacer el examen</h1>
+        <div class="caja_ques">
 
+            <ul>
+                {% for module in user.exam.modules.all %}
+                <li>
+                    <a href="{% url 'exam:question' module.id %}">
+                        <button class="botton">
+                            {{ module }}
+            </button>
+        </a></li>
+        {% endfor %}
+    </ul>
+</div>    
+    
 
 <form action="{% url 'logout' %}" method="post">
     {% csrf_token %}
     <input type="submit" value="Salir">
 </form>
+{% endblock  %}

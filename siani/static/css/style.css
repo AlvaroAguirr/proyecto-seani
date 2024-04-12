@@ -1,0 +1,128 @@
+body {
+    font-family: sans-serif;
+    color: rgb(112, 102, 90);
+    background-color: #eee;
+
+
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ align-content: center;
+
+}
+a{
+    width: auto;
+    height: 200px;
+    list-style: none;
+    text-decoration: none;
+    color: black;
+    font-size: 24px;
+}
+a:hover{
+    color: rgb(103, 165, 165);
+    color: black;
+}
+li{
+    list-style: none;
+}
+input{
+    color: #818181;
+    margin: 40px;
+    font-size: 20px;
+    border-radius: 10px;
+    height: 40px;
+    border: 1px solid #dbdbdb;
+}
+input:active{
+    border: 1px solid #dbdbdb;
+    
+}
+.formulario{
+    font-size: 20px;
+
+}
+
+.fondo{
+    border: 1px solid black;
+    width: 100%;
+    background-color: peru;
+}
+
+.botton{
+    font-size: 26px;
+    margin-top: 10px;
+    justify-content: center;
+    border-radius: 6px ;
+    background-color: rgb(156, 240, 219);
+    width: 200px;
+    height: 50px;
+    border: none;
+    color: black;
+}
+
+.botton:hover{
+    background-color: rgb(130, 198, 198);
+}
+.caja_ques{
+    display: flex;
+    border: 1px solid rgb(197, 197, 197);
+    margin: 0 auto;
+    width: 95%;
+    border-radius: 5px;
+    background-color: #6786ff;
+}
+
+.titulo{
+display: flex;
+align-items: center;
+justify-content: center;
+margin: 0 auto;
+    background-color: rgb(255, 164, 156);
+    width: 100%;
+    min-height: 70px ;
+    overflow: hidden;
+
+}
+
+.hdos{
+    color: #dbdbdb;
+    font-size: 26px;
+    background-color: #8181819c;
+    padding: 1%;
+}
+
+
+
+.diseño{
+    position: relative;
+display: flex;
+flex-direction: column;
+    background-color:#ffffff;
+    background: no-repeat;
+    background-size:cover ;
+    justify-content:space-around;
+    align-content: center;
+    align-items: center;
+    text-align: center;
+    width: 90%;
+    min-height: 700px;
+    border-radius: 10px;
+    box-shadow: 10px 10px 10px 10px rgb(222, 222, 222);
+}
+
+
+.formulario{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+    padding: 10px;
+
+    background-color: #c7f9eb;
+    border-radius: 10px;
+
+}
+
+.fors{
+    margin: 0 auto;
+}

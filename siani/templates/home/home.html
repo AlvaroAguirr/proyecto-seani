@@ -1,3 +1,31 @@
-<h1> Bienvendio a seani 2024</h1>
+{% extends 'base.html' %}
 
-<a href="{% url 'login' %}">ingresar </a>
+
+{% block title %} home{% endblock %}
+    
+
+{% load static %}
+{% block img-head %}{% static 'images/estudiando.jpg'%} {% endblock %}
+
+
+{% block content %}
+
+
+
+
+
+<h1 class="titulo"> Bienvenido a Seani 2024</h1>
+
+    <h2  class="hdos">
+Tu pagina diseñada para hacer tus examenes de la mejor manera 
+    </h2>
+
+
+
+<a href="{% url 'login' %}" >
+        <button class="botton">
+        ingresar 
+    
+    </button>
+    </a>
+{% endblock %}

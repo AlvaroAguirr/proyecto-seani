@@ -1,44 +1,56 @@
-<h1>  {{ question.module }}</h1>
+{% extends 'base.html' %}
 
 
+{% block title %} question {{ user }}{% endblock %}
+    
+    
+{% load static %}
+{% block img-head %}{% static 'images/images.jpg'%} {% endblock %}
+
+{% block content %}
+
+
+
+<h1 class="titulo">  {{ question.module }}</h1>
 
 {% if question.question_image %}
-<img src="{{ question.question_image.url }}" alt="" width="200px">
-
+<img src="{{ question.question_image.url }}" alt="" width="200px"class="image_question">
 {% endif %}
-
-
-
 
 {% if question.question_text %}
 <h2> {{ question.question_text }}</h2>
 {% endif %}
 
-<form action="{% url 'exam:question' m_id q_id %}" method="post">
-    {% csrf_token %}
-    <input type="radio" name="answer" id="ans0" value="-" 
-    {% if answer == '-'%} checked{% endif %} style="display:none;">
-    <label for="ans0">Respuesta inicial</label><br>
+<div>
 
-    <input type="radio" name="answer" id="ans1" value="A" 
-    {% if answer == 'A'%} checked{% endif %}>
+    <form action="{% url 'exam:question' m_id q_id %}" method="post" class="question">
+        {% csrf_token %}
+        <input type="radio" name="answer" id="ans0" value="-" 
+        {% if answer == '-'%} checked{% endif %} style="display:none;">
+        <label for="ans0">Respuesta inicial</label><br>
+        
+        <input type="radio" name="answer" id="ans1" value="A" 
+        {% if answer == 'A'%} checked{% endif %}>
     <label for="ans1">{{ question.answer1 }}</label><br>
 
     <input type="radio" name="answer" id="ans2"value="B" 
     {% if answer == 'B'%} checked{% endif %}>
     <label for="ans2">{{ question.answer2 }}</label><br>
-
-{% if question.answer3 %}
-<input type="radio" name="answer" id="ans3" value="C" 
-{% if answer == 'C'%} checked{% endif %}>
-<label for="ans3">{{ question.answer3 }}</label><br>
-{% endif %}
-
-{% if question.answer4 %}
-<input type="radio" name="answer" id="ans4" value="D" 
-{% if answer == 'D'%} checked{% endif %}>
-<label for="ans4">{{ question.answer4 }}</label><br>
-{% endif %}
-
+    
+    {% if question.answer3 %}
+    <input type="radio" name="answer" id="ans3" value="C" 
+    {% if answer == 'C'%} checked{% endif %}>
+    <label for="ans3">{{ question.answer3 }}</label><br>
+    {% endif %}
+    
+    {% if question.answer4 %}
+    <input type="radio" name="answer" id="ans4" value="D" 
+    {% if answer == 'D'%} checked{% endif %}>
+    <label for="ans4">{{ question.answer4 }}</label><br>
+    {% endif %}
+    
     <input type="submit" value="Siguiente">
 </form> 
+</div>
+
+{% endblock %}
